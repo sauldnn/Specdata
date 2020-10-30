@@ -10,6 +10,7 @@ pollutantmean <- function(directory, pollutant, id) {
     contador<-contador+1
   }
   Promesa<-sum(permonitor[,1])/sum(permonitor[,2])
+  promesa
 }
 
 complete<-function(directory, id){
@@ -19,8 +20,10 @@ complete<-function(directory, id){
     libro<-read.csv(paste(directory, "/" , id, ".csv", sep=""), header=TRUE)
     good<-complete.cases(libro)
     numero<-length(libro[good,][,1])
-    mediciones[contador, 2]<-nuymero
+    mediciones[contador, 2]<-numero
     mediciones[contador, 1]<-id
     contador<-contador+1
   }
+  colnames(mediciones)<-c("id", "nobs")
+  mediciones
 }
